@@ -18,3 +18,29 @@ Tasks
 4.  Use the notebook lecture1-benchmark.ipynb to benchmark your implementation 
     against NumPy's argmax().
 """
+def argmax(lst):
+    if len(lst) == 0:
+        raise ValueError("Cannot find argmax of empty sequence")
+    
+    n = len(lst)
+    value_max = -float('inf')  # Start with negative infinity
+    imax = 0
+    
+    for i in range(n):
+        value = lst[i]
+        if value > value_max:
+            imax = i
+            value_max = value
+    
+    return imax
+
+values = [2, 3, -1, 7, 4]
+i = argmax(values)
+print(f"Index of maximum value: {i}, maximum value: {values[i]}")
+
+# Test with empty sequence
+try:
+    empty_list = []
+    argmax(empty_list)
+except ValueError as e:
+    print(f"Error handling empty sequence: {e}")
